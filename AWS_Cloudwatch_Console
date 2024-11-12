@@ -1,0 +1,5 @@
+Pretty straightforward not much to explain here.
+
+Go to AWS Cloudwatch webpage
+Create alarm for instance which will send email when CPU Utilization is greater than 70.
+Email gets sent to a specific email ID or a topic which may consist of a monitoring team. 

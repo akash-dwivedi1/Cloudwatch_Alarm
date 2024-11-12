@@ -1,0 +1,21 @@
+Prerequisites:
+
+EC2 instance with AWS credentials configured.
+IAM role which has the required policies attached to it. 
+
+1. Create SNS Topic 
+aws sns create-topic --name HighCPUNotification
+
+
+2. Subscribe email to topic
+aws sns subscribe --topic-arn arn:aws:sns:us-east-1:123456789012:HighCPUNotification --protocol email --notification-endpoint akash@gmail.com
+
+3. aws cloudwatch put-metric-alarm --alarm-name HighCPUAlarm --metric-name CPUUtilization --namespace AWS/EC2 \
+  --statistic Average --period 300 --threshold 70 --comparison-operator GreaterThanThreshold \
+  --dimensions Name=InstanceId,Value=i-INSTANCEID --evaluation-periods 2 --alarm-actions arn:aws:sns:region:account-id:HighCPUNotification
+
+
+Change Instance ID , region and account ID according to your needs. 
+
+
+
